@@ -240,10 +240,12 @@ const submitForm = async () => {
   // Get the values from the form fields
   const username = document.getElementById('username').value.trim();
   const whatsapp = document.getElementById('whatsapp').value.trim();
+  const email = document.getElementById('email').value.trim();  // Adding email field
+  const profilePicture = document.getElementById('profile-picture').files[0];  // Adding profile picture field
 
   // Validate the form fields
-  if (!username || !whatsapp) {
-    showToast("Please fill in all fields.", 'warning');
+  if (!username || !whatsapp || !email) {
+    showToast("Please fill in all required fields.", 'warning');
     return;
   }
 
@@ -254,10 +256,20 @@ const submitForm = async () => {
     // Push a new entry to the "registrations" node
     const newRegistrationRef = push(registrationsRef);
 
-    // Set the data for the new registration
+    // Check if profile picture is uploaded
+    let profilePictureUrl = "";
+    if (profilePicture) {
+      const storageReference = storageRef(storage, `profile_pictures/${profilePicture.name}`);
+      await uploadBytes(storageReference, profilePicture);
+      profilePictureUrl = await getDownloadURL(storageReference);
+    }
+
+    // Set the data for the new registration, including all fields
     await set(newRegistrationRef, {
       username,
       whatsapp,
+      email,  // Add email to the data
+      profilePictureUrl,  // Add the profile picture URL if uploaded
       timestamp: serverTimestamp(),
     });
 
