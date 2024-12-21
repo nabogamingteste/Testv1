@@ -32,7 +32,8 @@
 /* Popup styles */
 #install-popup {
   position: fixed;
-  background-color: rgba(255,255,255);
+  backdrop-filter: blur(4px);
+  background-color: rgba(255,255,255,.8);
   color: black;width: 100%;
   padding: 25px;bottom: 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -52,19 +53,8 @@
   margin-bottom: 20px;
 }
 
-#install-btn {
+#install-btn, #close-btn {
   background-color: #000;
-  border: none;
-  padding: 10px 50px;
-  margin: 5px;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-#close-btn {
-  background-color: red;
   border: none;
   padding: 10px 20px;
   margin: 5px;
@@ -746,14 +736,14 @@ const displayUniqueId = (uid) => {
       color: red; /* Orange */
     }
 
-  @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
   `;
   document.head.appendChild(style);
 
@@ -934,7 +924,7 @@ const displayPost = (post, container, isMyPost) => {
       showToast("unliked", 'info');
     } else {
       await set(postRef, true);  // Add like
-      showToast("liked...added to likedposts", 'success');
+      showToast("you liked the post", 'success');
     }
     loadPosts();  // Reload to reflect the changes
   };
@@ -955,7 +945,7 @@ const displayPost = (post, container, isMyPost) => {
     const postRef = ref(db, `posts/${postId}`);
     await remove(postRef);  // Delete the post
     loadPosts();  // Reload posts to remove the deleted post
-    showToast("post imefutwa", 'warning');
+    showToast("post imefutwa", 'success');
   };
 
   const editPost = (post) => {
@@ -1038,7 +1028,7 @@ const updateUserProfile = async () => {
         await updateProfile(user, {
           displayName: newUsername,
         });
-        showToast("Hongera! updates zimekubalika", 'success');
+        showToast("Username updated successfully!", 'success');
       } catch (profileError) {
         console.error("Error updating username:", profileError);
         showToast("Error updating username. Please try again.", 'error');
@@ -1261,12 +1251,12 @@ document.getElementById('send-message-button')?.addEventListener('click', sendMe
     </ul>
   </nav>
   <div class=post-base>
-    <section class=hero>
+    <section class=hero style="height:250px">
 <div class=hero-content>
-  <h1>Nabogaming Tournament 2025</h1>
-  <p> Habari <span class="user-name"></span>, Jiandae Kwa Tournament Ambayo Haijawahi Tokea Nchini. Tukutakie Mashindano Mema</p>
+  <h1></h1>
+  <p></p>
   <!--a class=btn-primary>Jisajili Sasa <i class=ri-arrow-right-line></i></a-->
-  <a class=btn-primary>Inakujia Hivi Karibuni</a>
+  <a class=btn-primary style="margin-top:160px;background:none;color:white">Nabogaming & <span class="user-name"></span></a>
 </div>
     </section>
       <section class=hero style="background: white; color:black;box-shadow:none;border:1px solid #ddd;">
@@ -1745,7 +1735,7 @@ Please Wait.....
             Your browser does not support the video tag.
           </video>
 
-          <!-- Post Badges 
+          <!-- Post Badges -->
           <div class="post-badges">
             <span class="badge new">
               <div class="post-options">
@@ -1758,7 +1748,7 @@ Please Wait.....
                 </div>
               </div>
             </span>
-          </div>-->
+          </div>
 
           <!-- Post Info -->
           <div class="post-info">
@@ -1775,8 +1765,8 @@ Please Wait.....
       <!-- Chat Box and Input -->
       <div class="chat-box-container">
         <span class="entry">
-          Karibu Katika GameOn <code>[ BETA ]</code> Fuatilia Yanayojili Hapa Nabogaming Na Ushiriki Mawazo Yako Sasa
-        , Tukutakie Siku Njema.</span>
+          Karibu Katika ChatPlace By Nabogaming, Chati Na Gamers Mbalimbali Ndani Ya Nabogaming. Tukutakie Chatting Njema
+        </span>
 
         <div class="chat-box" id="chat-box">
          <div class="preloader"></div>
@@ -1793,8 +1783,8 @@ Please Wait.....
   <!-- Install Popup -->
 <div id="install-popup" style="display:none;">
   <div class="popup-content">
-    <h2>Pakua Nabogaming App </h2>
-    <p><span id="user-name"></span> Kwa Experience Ya Kisasa Zaidi Nasi, Pakua App Ya Nabogaming (Pregressive Web Application) Na Uweze Kuitumia Moja Kwa Moja Katika Simu Yako Sasa. <a href="tel:0614003543" style="color:black;font-weight:bold;text-decoration:none">Bofya Hapa Kwa Msaada Zaidi</a></p>
+    <h2>Pakua Nabogaming App (Pwa)</h2>
+    <p><span id="user-name"></span> Kwa Experience Ya Kisasa Zaidi Pakua App Hii Sasa</p>
     <button id="install-btn">Pakua</button>
     <button id="close-btn">Close</button>
   </div>
