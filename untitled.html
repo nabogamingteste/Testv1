@@ -1,173 +1,318 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">    <meta name="description" content="Nabogaming Betplace - Ulimwengu bora wa online games, kushinda zawadi, na kufurahia burudani ya michezo mtandaoni. Jiunge nasi leo!">
-    <meta name="keywords" content="Nabogaming, Betplace, Kubashiri Michezo, Games Mtandaoni, Zawadi, Michezo ya ushindani, Ushindi, Michezo ya Mtandaoni">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset=UTF-8> 
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <meta name="description" content="Nabogaming - Ulimwengu bora wa online games, kushinda zawadi, na kufurahia burudani ya michezo mtandaoni. Jiunge nasi leo!">
+    <meta name="keywords" content="Nabogaming, Michezo, Games Mtandaoni, Zawadi, Michezo ya ushindani, Ushindi, Michezo ya Mtandaoni">
     <meta name="author" content="Nabogaming">
-    <meta property="og:title" content="Nabogaming Betplace">
-    <meta property="og:description" content="Gundua furaha ya kushindana michezo ya online na kushinda zawadi kubwa kwenye Nabogaming Betplace. Usikose nafasi yako ya ushindi!">
+    <meta property="og:title" content="Nabogaming">
+    <meta property="og:description" content="Gundua furaha ya kushindana michezo ya online na kushinda zawadi kubwa kwenye Nabogaming. Usikose nafasi yako ya ushindi!">
     <meta property="og:image" content="https://nabogaming.com/logo.png">
     <meta property="og:url" content="https://nabogaming.com">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Nabogaming Betplace">
-    <meta name="twitter:description" content="Jiunge na Nabogaming Betplace kwa uzoefu bora wa kushindana michezo mtandaoni. Furahia ushindi leo!">
+    <meta name="twitter:title" content="Nabogaming">
+    <meta name="twitter:description" content="Jiunge na Nabogaming kwa uzoefu bora wa kushindana michezo mtandaoni. Furahia ushindi leo!">
     <meta name="twitter:image" content="https://nabogaming.com/logo.png">
     <link rel="canonical" href="https://nabogaming.com">
-  <title>Nabogaming Betplace 2.5</title><link rel="stylesheet" href="app.css"><link rel="stylesheet" href="2.css"><link rel="stylesheet" href="remixicon.min.css"></head><body>
-<script>// Function to render the dashboard
-  function renderDashboard() {
-    const main = document.createElement('main');
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    
+  <!-- PWA Specific -->
+  <link rel="manifest" href="/manifest.json"> <!-- Manifest File -->
+  <link rel="icon" href="logo.png" sizes="192x192">
+  <link rel="icon" href="logo.png" sizes="512x512">
+  
+  <title>Nabogaming 2.5</title>
+    <link rel=stylesheet href=app.css>
+    <link rel=stylesheet href=2.css>
+    <link rel=stylesheet href=remixicon.min.css>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
 
-    // Header
-    const header = document.createElement('header');
-    header.classList.add('page-header');
-    header.innerHTML = `
-      <i class="ri-arrow-left-line" onclick='navigateTo("home")'></i>
-      <h1>Administrator</h1>
-      <div class="header-icons">
-        <i class="ri-gamepad-line" onclick='navigateTo("games")'></i>
-      </div>
-    `;
-    main.appendChild(header);
+        body {
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+            font-size: 16px;
+            overflow: auto;
+        }
 
-    // Profile Container
-    const profileContainer = document.createElement('div');
-    profileContainer.classList.add('profile-container');
+        .container {
+            width: 100%;
+            max-width: 500px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 30px;margin-top: 50px;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
 
-    // Profile Overview
-    const profileOverview = document.createElement('div');
-    profileOverview.classList.add('profile-overview');
-    profileOverview.innerHTML = `
-      <div class="profile-photo">
-        <img src="5.png" alt="User Profile Picture">
-        <img src="logo.png" style="border:1px solid #f0f0f0;margin-left:-60px" alt="User Profile Picture">
-      </div>
-      <div class="profile-details">
-        <h2>John Doe</h2>
-        <p>UI/UX Designer | Frontend Developer</p>
-        <div class="profile-stats">
-          <div>
-            <h3>120</h3>
-            <p>Projects</p>
-          </div>
-          <div>
-            <h3>1.5k</h3>
-            <p>Followers</p>
-          </div>
-                    <div>
-            <h3>1.5k</h3>
-            <p>Followers</p>
-          </div>
-          <div>
-            <h3>300</h3>
-            <p>Following</p>
-          </div>
-        </div>
-      </div>
-    `;
-    profileContainer.appendChild(profileOverview);
+        .container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
 
-    // Profile Settings
-    const profileSettings = document.createElement('section');
-    profileSettings.classList.add('profile-settings');
-    profileSettings.innerHTML = `
-      <div class="settings-card">
-        <h2> Update Post Version 01</h2>
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" placeholder="John Doe">
-        </div>
-         <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" placeholder="John Doe">
-        </div>
-         <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" placeholder="John Doe">
-        </div>
-         <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" placeholder="John Doe">
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" placeholder="john.doe@example.com">
-        </div>
-        <button class="save-btn">Update Changes</button>
-      </div>
-      <div class="settings-card">
-        <h2> Update Post Version 02</h2>
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" placeholder="John Doe">
-        </div>
-         <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" placeholder="John Doe">
-        </div>
-         <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" placeholder="John Doe">
-        </div>
-         <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" placeholder="John Doe">
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" placeholder="john.doe@example.com">
-        </div>
-        <button class="save-btn">Update Changes</button>
-      </div>
-      <div class="settings-card">
-        <h2> Update Post Version 03</h2>
-        <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" placeholder="John Doe">
-        </div>
-         <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" placeholder="John Doe">
-        </div>
-         <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" placeholder="John Doe">
-        </div>
-         <div class="form-group">
-          <label for="name">Name</label>
-          <input type="text" id="name" placeholder="John Doe">
-        </div>
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" placeholder="john.doe@example.com">
-        </div>
-        <button class="save-btn">Update Changes</button>
-      </div>
-      <div class="settings-card">
-        <h2>Change Password</h2>
-        <div class="form-group">
-          <label for="current-password">Current Password</label>
-          <input type="password" id="current-password" placeholder="Enter current password">
-        </div>
-        <div class="form-group">
-          <label for="new-password">New Password</label>
-          <input type="password" id="new-password" placeholder="Enter new password">
-        </div>
-        <div class="form-group">
-          <label for="confirm-password">Confirm Password</label>
-          <input type="password" id="confirm-password" placeholder="Confirm new password">
-        </div>
-        <button class="save-btn">Update Password</button>
-      </div>
-    `;
-    profileContainer.appendChild(profileSettings);
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+            letter-spacing: 1.5px;
+            animation: fadeIn 1s ease-out;
+        }
 
-    main.appendChild(profileContainer);
-    document.body.appendChild(main);
-  }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-  // Dummy navigation function
-  function navigateTo(page) {
-    alert(`Navigating to ${page} page...`);
-  }
+        .form-group {
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out;
+        }
 
-  // Initialize the dashboard on page load
-  renderDashboard();</script></body></html>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            color: #333;
+            margin-top: 5px;
+            transition: border 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #ddd;
+            outline: none;background-color: white;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-group .whatsapp {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        .form-group .whatsapp input {
+            width: calc(100% - 50px);
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+        .form-group .whatsapp img {
+            width: 25px;
+            height: auto;
+        }
+
+        /* Styling the logo upload input */
+        .form-group .logo-upload input[type="file"] {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            color: #333;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .form-group .logo-upload input[type="file"]:hover {
+            background-color: #f0f0f0;
+        }
+
+        .form-group .logo-upload label {
+            display: block;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color:black;
+            color: #fff;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+    
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
+  import { getDatabase, ref, push, update, set, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-database.js";
+  import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-storage.js";
+  
+  const firebaseConfig = {
+    apiKey: "AIzaSyC_VKdV-KsIzUiOb7jFLsYXdTsuGkLiS-Q",
+    authDomain: "register-71bde.firebaseapp.com",
+    projectId: "register-71bde",
+    storageBucket: "register-71bde.appspot.com",
+    messagingSenderId: "412548441298",
+    appId: "1:412548441298:web:e0fb2b6c5fbd4af7d0b90b",
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth();
+  const db = getDatabase(app);
+  const storage = getStorage(app);
+
+  let currentUser = null;
+  onAuthStateChanged(auth, (user) => {
+    currentUser = user;
+  });
+
+  // Function to handle form submission
+  const handleFormSubmit = async (event) => {
+    event.preventDefault(); // Prevent form from submitting traditionally
+
+    const username = document.getElementById('username').value;
+    const whatsapp = document.getElementById('whatsapp').value;
+    const clan = document.getElementById('clan').value;
+    const description = document.getElementById('description').value;
+    const logoFile = document.getElementById('logo').files[0];
+
+    // Validate form inputs
+    if (!username || !whatsapp || !clan) {
+      alert('Please fill in all required fields');
+      return;
+    }
+
+    try {
+      let logoURL = null;
+      if (logoFile) {
+        // Upload the logo to Firebase Storage
+        const logoStorageRef = storageRef(storage, 'logos/' + logoFile.name);
+        await uploadBytes(logoStorageRef, logoFile);
+        logoURL = await getDownloadURL(logoStorageRef); // Get the download URL of the uploaded logo
+      }
+
+      // Save the form data to Firebase Realtime Database
+      const formData = {
+        username,
+        whatsapp,
+        clan,
+        description,
+        logoURL,
+        createdAt: serverTimestamp(),
+      };
+
+      // Push the data to the database
+      const newRef = push(ref(db, 'userRegistrations'));
+      await set(newRef, formData);
+      alert('Form submitted successfully');
+    } catch (error) {
+      console.error('Error submitting form: ', error);
+      alert('Error submitting the form');
+    }
+  };
+
+  // Add event listener for form submission
+  document.querySelector('form').addEventListener('submit', handleFormSubmit);
+</script>
+
+</head>
+<body>
+
+    <div class="container">
+        <h1>Jaza Taarifa Zako Muhimu Kujiunga Na Pubg 1v1 22/12/2024</h1>
+        <form action="#">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required placeholder="Enter your username">
+            </div>
+
+            <div class="form-group">
+                <label for="whatsapp">WhatsApp Number</label>
+                <div class="whatsapp">
+                    <input type="text" id="whatsapp" name="whatsapp" required placeholder="Enter your WhatsApp number">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/WhatsApp.svg" alt="WhatsApp Logo">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="clan">Clan</label>
+                <input type="text" id="clan" name="clan" required placeholder="Enter your clan name">
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" placeholder="Tell us a little about yourself"></textarea>
+            </div>
+
+            <!-- Logo Upload -->
+            <div class="form-group logo-upload">
+                <label for="logo">Upload Logo</label>
+                <input type="file" id="logo" name="logo" accept="image/*">
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+</body>
+</html>
